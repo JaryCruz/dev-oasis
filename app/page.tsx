@@ -9,7 +9,7 @@ export default function HomePage() {
   useEffect(() => {
     async function fetchJobs() {
       try {
-        const response = await fetch('http://localhost:3000/api/jobs')
+        const response = await fetch('https://dev-oasis.netlify.app/api/jobs')
         if (!response.ok) {
           throw new Error('Failed to fetch data')
         }

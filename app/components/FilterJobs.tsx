@@ -16,7 +16,7 @@ export default function FilterJobs({ searchJobs }: FilterJobsProps) {
   async function handleSubmit(e: FormEvent) {
     e.preventDefault()
     if (position == null && location == null && fullTimeOnly === false) return
-    const response = await fetch('http://localhost:3000/api/jobs')
+    const response = await fetch('https://dev-oasis.netlify.app/api/jobs')
     const data = await response.json()
 
     const filteredJobs = data.filter((job: JobInfoType) => {
