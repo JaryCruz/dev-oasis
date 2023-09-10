@@ -1,7 +1,7 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
-import { ReactNode, useState } from 'react'
+import { ReactNode } from 'react'
 import Header from './components/Header'
 
 const montserrat = Montserrat({
