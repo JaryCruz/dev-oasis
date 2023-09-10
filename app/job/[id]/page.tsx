@@ -8,9 +8,7 @@ type JobPageProps = {
 }
 
 async function getJobs() {
-  const response = await fetch('http://localhost:3000/api/jobs', {
-    cache: 'no-store',
-  })
+  const response = await fetch('https://dev-oasis.netlify.app/api/jobs')
   const data = await response.json()
   return data
 }
