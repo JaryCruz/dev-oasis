@@ -1,107 +1,413 @@
-:root {
-  --max-width: 1100px;
-  --border-radius: 12px;
-  --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
-    'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
-    'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
-
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-
-  --primary-glow: conic-gradient(
-    from 180deg at 50% 50%,
-    #16abff33 0deg,
-    #0885ff33 55deg,
-    #54d6ff33 120deg,
-    #0071ff33 160deg,
-    transparent 360deg
-  );
-  --secondary-glow: radial-gradient(
-    rgba(255, 255, 255, 1),
-    rgba(255, 255, 255, 0)
-  );
-
-  --tile-start-rgb: 239, 245, 249;
-  --tile-end-rgb: 228, 232, 233;
-  --tile-border: conic-gradient(
-    #00000080,
-    #00000040,
-    #00000030,
-    #00000020,
-    #00000010,
-    #00000010,
-    #00000080
-  );
-
-  --callout-rgb: 238, 240, 241;
-  --callout-border-rgb: 172, 175, 176;
-  --card-rgb: 180, 185, 188;
-  --card-border-rgb: 131, 134, 135;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-
-    --primary-glow: radial-gradient(rgba(1, 65, 255, 0.4), rgba(1, 65, 255, 0));
-    --secondary-glow: linear-gradient(
-      to bottom right,
-      rgba(1, 65, 255, 0),
-      rgba(1, 65, 255, 0),
-      rgba(1, 65, 255, 0.3)
-    );
-
-    --tile-start-rgb: 2, 13, 46;
-    --tile-end-rgb: 2, 5, 19;
-    --tile-border: conic-gradient(
-      #ffffff80,
-      #ffffff40,
-      #ffffff30,
-      #ffffff20,
-      #ffffff10,
-      #ffffff10,
-      #ffffff80
-    );
-
-    --callout-rgb: 20, 20, 20;
-    --callout-border-rgb: 108, 108, 108;
-    --card-rgb: 100, 100, 100;
-    --card-border-rgb: 200, 200, 200;
-  }
-}
-
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
-  padding: 0;
   margin: 0;
+  padding: 0;
 }
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
+:root {
+  --white: hsl(0, 0%, 100%);
+  --bg-body: hsl(0, 0%, 95%);
+  --light-gray: hsl(0, 0%, 50%);
+  --black: hsl(0, 0%, 0%);
+  --accent: hsl(113, 100%, 35%);
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  font-size: 0.9rem;
+  position: relative;
+  color: var(--black);
+}
+
+button {
+  border: none;
+  background: none;
+  font-size: 0.9rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+p {
+  line-height: 1.6;
+  color: var(--light-gray);
+}
+
+ul li {
+  color: var(--light-gray);
 }
 
 a {
-  color: inherit;
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+a:hover {
+  opacity: 0.7;
+}
+
+main {
+  background-color: var(--bg-body);
+  min-height: 100vh;
+}
+
+.btn-primary {
+  background-color: var(--accent);
+  color: hsl(0, 0%, 100%);
+  height: 3rem;
+  width: 7rem;
+}
+
+.btn-primary:hover {
+  opacity: 0.8;
+}
+
+.btn-secondary {
+  color: var(--black);
+  border: 2px solid var(--black);
+  width: 7rem;
+  height: 3rem;
+}
+
+.btn-secondary:hover {
+  opacity: 0.8;
+}
+
+.location {
+  font-size: 0.9rem;
+  color: var(--accent);
+}
+
+.no-jobs {
+  text-align: center;
+  margin-top: 4rem;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+input {
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--black);
+  font-size: 1rem;
+}
+
+input::placeholder {
+  color: var(--light-gray);
+}
+
+.loader {
+  margin: 0 auto;
+  height: 3rem;
+  width: 3rem;
+  margin-top: 5rem;
+  border: 5px solid var(--black);
+  border-radius: 50%;
+  border-top: 5px solid var(--accent);
+  animation: spin 800ms linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    rotate: 0deg;
+  }
+
+  100% {
+    rotate: 360deg;
+  }
+}
+
+.not-found {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.not-found a {
+  color: var(--black);
+  text-decoration: underline;
+  margin-top: 1rem;
+  display: block;
+}
+
+/* Header */
+header {
+  background-color: var(--accent);
+  height: 60px;
+  color: var(--white);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+header .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.logo {
+  font-size: 1.8rem;
+  color: hsl(0, 0%, 100%);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+/* Form */
+.container:has(form) {
+  position: sticky;
+  top: 90px;
+}
+
+form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid var(--accent);
+  gap: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: var(--white);
+}
+
+form input[type='text'] {
+  padding: 0 1rem;
+  background-color: var(--white);
+}
+
+.form-group {
+  display: flex;
+  flex: 1;
+  gap: 0.5rem;
+  padding: 0.7rem;
+  border-right: 1px solid transparent;
+  align-items: center;
+}
+
+.form-group:first-child,
+.form-group:nth-child(2) {
+  border-color: var(--accent);
+}
+
+.form-group svg {
+  fill: var(--accent);
+  font-size: 1.2rem;
+  margin-left: 0.5rem;
+}
+
+.form-group label {
+  color: var(--black);
+  cursor: pointer;
+}
+
+.form-group button {
+  margin-left: auto;
+}
+
+.form-group input {
+  width: 100%;
+}
+
+.form-group input[type='checkbox'] {
+  accent-color: var(--accent);
+  height: 1rem;
+  width: 1rem;
+}
+
+/* Job Listing */
+.jobs-container {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  width: 100%;
+  padding-bottom: 2rem;
+  margin-top: 4rem;
+}
+
+.job-card {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  width: 100%;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  background-color: var(--white);
+}
+
+.job-card p {
+  font-size: 0.9rem;
+  color: var(--light-gray);
+}
+
+.job-card p:first-of-type {
+  margin-top: 1rem;
+}
+
+.job-card h3 {
+  margin-top: 2rem;
+}
+
+.job-card a {
+  font-weight: bold;
+  margin: 0.3rem 0;
+  font-size: 1.2rem;
+  display: block;
+  color: var(--black);
+}
+
+.job-card img {
+  border-radius: 0.5rem;
+  padding: 0.3rem;
+  object-fit: contain;
+}
+
+/* Applications Page */
+.application-company {
+  background-color: var(--white);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: 700px;
+  margin: 2rem auto;
+  border-radius: 0.5rem;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.application-company img {
+  width: 5rem;
+  height: 5rem;
+  padding: 1rem;
+  object-fit: contain;
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+}
+
+.application-website {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+  padding: 1rem;
+}
+
+.application-website p {
+  color: var(--light-gray);
+}
+
+.application-body {
+  background-color: var(--white);
+  padding: 1.5rem;
+  max-width: 700px;
+  margin: 2rem auto;
+  border-radius: 0.5rem;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.application-header {
+  position: sticky;
+  top: 80px;
+  border-bottom: 1px solid hsl(0, 0%, 70%);
+  margin-bottom: 1.5rem;
+  padding-top: 1rem;
+  background-color: var(--white);
+}
+
+.application-header p {
+  color: var(--light-gray);
+}
+
+.application-title {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 0 1.5rem;
+}
+
+.application-title h1 {
+  font-size: 1.5rem;
+}
+
+.application-title h3 {
+  margin-top: 0.5rem;
+}
+
+.application-body h2 {
+  margin: 2rem 0 1rem;
+}
+
+.application-body ul {
+  margin: 1rem;
+}
+
+.application-body li {
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 900px) {
+  form {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .form-group {
+    width: 100%;
+    max-height: 80px;
+    border: none;
+  }
+
+  .form-group label {
+    margin-left: 1rem;
+  }
+
+  .form-group:first-child,
+  .form-group:nth-child(2) {
+    border-bottom: 1px solid var(--accent);
+  }
+
+  .form-group:last-child {
+    padding: 0.5rem 1.3rem 0.5rem;
+  }
+
+  .form-group button {
+    height: 2rem;
+    width: 4.5rem;
+  }
+}
+
+@media (max-width: 650px) {
+  .application-company {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .application-company img {
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .application-title h1 {
+    font-size: 1.3rem;
+  }
+
+  .application-website,
+  .application-title {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .application-title button {
+    width: 100%;
+  }
+
+  .no-jobs {
+    font-size: 1.1rem;
   }
 }
